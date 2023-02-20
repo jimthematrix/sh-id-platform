@@ -45,7 +45,7 @@ func (s *schema) Process(ctx context.Context, schemaURL, credentialType string, 
 	fmt.Println("=== Calling process():")
 	fmt.Printf("\tschema url: %s\n", schemaURL)
 	fmt.Printf("\tcredential type: %s\n", credentialType)
-	fmt.Printf("\tschema url: %+v\n", credential)
+	fmt.Printf("\tcredential: %+v\n", credential)
 	var parser processor.Parser
 	var validator processor.Validator
 	pr := &processor.Processor{}
