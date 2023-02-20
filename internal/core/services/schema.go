@@ -42,6 +42,10 @@ func (s *schema) LoadSchema(ctx context.Context, url string) (jsonSuite.Schema, 
 
 // Process data and schema and create Index and Value slots
 func (s *schema) Process(ctx context.Context, schemaURL, credentialType string, credential verifiable.W3CCredential, options *processor.CoreClaimOptions) (*core.Claim, error) {
+	fmt.Println("=== Calling process():")
+	fmt.Printf("\tschema url: %s\n", schemaURL)
+	fmt.Printf("\tcredential type: %s\n", credentialType)
+	fmt.Printf("\tschema url: %+v\n", credential)
 	var parser processor.Parser
 	var validator processor.Validator
 	pr := &processor.Processor{}
@@ -55,6 +59,7 @@ func (s *schema) Process(ctx context.Context, schemaURL, credentialType string, 
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("\tschema: %+v\n", schema)
 
 	jsonCredential, err := json.Marshal(credential)
 	if err != nil {
