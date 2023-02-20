@@ -151,7 +151,7 @@ func main() {
 		chiMiddleware.RequestID,
 		log.ChiMiddleware(ctx),
 		chiMiddleware.Recoverer,
-		cors.Handler(cors.Options{AllowedOrigins: []string{"*"}}),
+		cors.Handler(cors.Options{AllowedOrigins: []string{"https://*", "http://*"}}),
 		chiMiddleware.NoCache,
 	)
 	api.HandlerFromMux(
