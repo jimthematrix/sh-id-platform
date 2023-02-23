@@ -302,6 +302,7 @@ func (s *Server) Agent(ctx context.Context, request AgentRequestObject) (AgentRe
 	}
 	basicMessage, err := s.packageManager.UnpackWithType(packers.MediaTypeZKPMessage, []byte(*request.Body))
 	if err != nil {
+		fmt.Printf("can not proceed with the given request. %s\n", err)
 		return Agent400JSONResponse{N400JSONResponse{fmt.Sprintf("can not proceed with the given request. %s", err)}}, nil
 	}
 
