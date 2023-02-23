@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"os"
 
@@ -265,7 +266,7 @@ func (s *Server) Agent(ctx context.Context, request AgentRequestObject) (AgentRe
 	}
 	basicMessage, err := s.packageManager.UnpackWithType(packers.MediaTypeZKPMessage, []byte(*request.Body))
 	if err != nil {
-		return Agent400JSONResponse{N400JSONResponse{"can not proceed with the given request"}}, nil
+		return Agent400JSONResponse{N400JSONResponse{fmt.Sprintf("can not proceed with the given request. %s", err)}}, nil
 	}
 
 	req, err := ports.NewAgentRequest(basicMessage)
