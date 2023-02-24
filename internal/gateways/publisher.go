@@ -92,6 +92,7 @@ func (p *publisher) PublishState(ctx context.Context, identifier *core.DID) (*do
 }
 
 func (p *publisher) publishState(ctx context.Context, identifier *core.DID) (*domain.PublishedState, error) {
+	fmt.Printf("=== publishing state for %s\n", identifier.String())
 	exists, err := p.identityService.HasUnprocessedStatesByID(ctx, identifier)
 	if err != nil {
 		log.Error(ctx, "error fetching unprocessed issuers did", err)
@@ -127,6 +128,7 @@ func (p *publisher) publishState(ctx context.Context, identifier *core.DID) (*do
 
 // PublishProof publishes new proof using the latest state
 func (p *publisher) publishProof(ctx context.Context, identifier *core.DID, newState domain.IdentityState) (*string, error) {
+	fmt.Printf("=== publishing state proof for %s\n", identifier.String())
 	did, err := core.ParseDID(newState.Identifier)
 	if err != nil {
 		return nil, err
