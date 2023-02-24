@@ -31,6 +31,7 @@ func (isr *identityState) Save(ctx context.Context, conn db.Querier, state domai
 		previous_state,
 		status
 	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT DO NOTHING`
+	fmt.Printf("=== Saving identity state: %s\n", query)
 	_, err := conn.Exec(ctx, query,
 		state.Identifier,
 		state.State,
@@ -115,6 +116,7 @@ func (isr *identityState) GetStatesByStatus(ctx context.Context, conn db.Querier
 }
 
 func (isr *identityState) UpdateState(ctx context.Context, conn db.Querier, state *domain.IdentityState) (int64, error) {
+	fmt.Printf("=== Updating identity state: UPDATE identity_states SET block_timestamp=%d, block_number=%d, tx_id=%v, status=%v WHERE state = %v\n", state.BlockTimestamp, state.BlockNumber, state.TxID, state.Status, state.State)
 	tag, err := conn.Exec(ctx, `UPDATE identity_states 
 		SET block_timestamp=$1, block_number=$2, tx_id=$3, status=$4 WHERE state = $5 `,
 		state.BlockTimestamp, state.BlockNumber, state.TxID, state.Status, state.State)
