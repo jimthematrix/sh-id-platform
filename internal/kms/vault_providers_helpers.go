@@ -19,8 +19,10 @@ const (
 )
 
 func saveKeyMaterial(vaultCli *api.Client, path string, jsonObj map[string]string) error {
+	fmt.Println("=== saveKeyMaterial()")
 	secret := map[string]interface{}{"data": jsonObj}
 	vaultPath := absVaultSecretPath(path)
+	fmt.Printf("\tvault path: %s\n", vaultPath)
 	_, err := vaultCli.Logical().Write(vaultPath, secret)
 	return errors.WithStack(err)
 }

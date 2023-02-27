@@ -300,6 +300,7 @@ func (s *Server) Agent(ctx context.Context, request AgentRequestObject) (AgentRe
 		log.Debug(ctx, "agent empty request")
 		return Agent400JSONResponse{N400JSONResponse{"cannot proceed with an empty request"}}, nil
 	}
+	fmt.Printf("=== payload for Agent() request: %s\n", *request.Body)
 	basicMessage, err := s.packageManager.UnpackWithType(packers.MediaTypeZKPMessage, []byte(*request.Body))
 	if err != nil {
 		fmt.Printf("can not proceed with the given request. %s\n", err)

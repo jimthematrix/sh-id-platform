@@ -38,6 +38,7 @@ func NewVaultBJJKeyProvider(vaultCli *api.Client, keyType KeyType) KeyProvider {
 }
 
 func (v *vaultBJJKeyProvider) New(identity *core.DID) (KeyID, error) {
+	fmt.Println("=== vaultBJJKeyProvider.New()")
 	bjjPrivKey := babyjub.NewRandPrivKey()
 	keyID := KeyID{
 		Type: v.keyType,
