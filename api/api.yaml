@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
-  title: Self Hosted ID Platform
+  title: Kaleido Decentralized Identity Service - Issuer
   description: |
-    Documentation for the Self Hosted ID Platform
+    Built on the Polygon iden3 technology
   version: 0.1.0
 
 servers:
@@ -48,7 +48,7 @@ paths:
                 $ref: '#/components/schemas/Health'
         '500':
           $ref: '#/components/responses/500'
-#identity:
+  #identity:
   /v1/identities:
     post:
       summary: Create Identity
@@ -57,7 +57,7 @@ paths:
       tags:
         - Identity
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       requestBody:
         required: true
         content:
@@ -84,7 +84,7 @@ paths:
       tags:
         - Identity
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       responses:
         '200':
           description: all good
@@ -108,7 +108,7 @@ paths:
       tags:
         - Identity
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       parameters:
         - $ref: '#/components/parameters/pathIdentifier'
       responses:
@@ -140,7 +140,7 @@ paths:
       tags:
         - Claim
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       parameters:
         - $ref: '#/components/parameters/pathIdentifier'
       requestBody:
@@ -173,7 +173,7 @@ paths:
       tags:
         - Claim
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       parameters:
         - $ref: '#/components/parameters/pathIdentifier'
         - in: query
@@ -227,7 +227,7 @@ paths:
       tags:
         - Claim
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       parameters:
         - $ref: '#/components/parameters/pathIdentifier'
         - $ref: '#/components/parameters/pathClaim'
@@ -254,7 +254,7 @@ paths:
       tags:
         - Claim
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       parameters:
         - $ref: '#/components/parameters/pathIdentifier'
         - $ref: '#/components/parameters/pathNonce'
@@ -300,7 +300,7 @@ paths:
       tags:
         - Claim
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       parameters:
         - $ref: '#/components/parameters/pathIdentifier'
         - $ref: '#/components/parameters/pathClaim'
@@ -317,7 +317,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
-#agent
+  #agent
   /v1/agent:
     post:
       summary: Agent
@@ -357,7 +357,6 @@ components:
       additionalProperties:
         type: boolean
 
-
     GenericErrorMessage:
       type: object
       required:
@@ -383,15 +382,15 @@ components:
             method:
               type: string
               x-omitempty: false
-              example: "polygonid"
+              example: 'polygonid'
             blockchain:
               type: string
               x-omitempty: false
-              example: "polygon"
+              example: 'polygon'
             network:
               type: string
               x-omitempty: false
-              example: "mumbai"
+              example: 'mumbai'
 
     CreateIdentityResponse:
       type: object
@@ -490,10 +489,10 @@ components:
         merklizedRootPosition:
           type: string
       example:
-        credentialSchema: "https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v3.json"
-        type: "KYCAgeCredential"
+        credentialSchema: 'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v3.json'
+        type: 'KYCAgeCredential'
         credentialSubject:
-          id: "fill with did"
+          id: 'fill with did'
           birthday: 19960424
           documentType: 2
         expiration: 12345
@@ -516,7 +515,7 @@ components:
       type: object
       required:
         - id
-        - "@context"
+        - '@context'
         - type
         - credentialSubject
         - credentialStatus
@@ -527,7 +526,7 @@ components:
         id:
           type: string
           x-omitempty: false
-        "@context":
+        '@context':
           type: array
           x-omitempty: false
           items:
@@ -600,7 +599,6 @@ components:
           type: string
         to:
           type: string
-
 
     CredentialSchema:
       type: object
@@ -717,7 +715,6 @@ components:
       schema:
         type: integer
         format: int64
-
 
   responses:
     '400':
